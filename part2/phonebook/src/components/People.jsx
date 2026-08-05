@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import Connection from '../services/Connection'
+
 
 const Info = (props) => {
-    return <p>{props.name} - {props.phone}</p>
+    return <p>{props.name} - {props.phone} <button type="submit" onClick={props.onClick}>Delete</button></p> 
 }
 
 
@@ -14,7 +16,7 @@ const People = (props) => {
 
     return (
         <div>
-            {final_search.map(p => <Info key = {p.name} name = {p.name} phone = {p.phone} />)}
+            {final_search.map(p => <Info key = {p.id} name = {p.name} phone = {p.phone} onClick = {() => props.delete_handler(p.id)} />)}
         </div>
     )
 }
