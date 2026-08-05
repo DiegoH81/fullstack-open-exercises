@@ -1,25 +1,34 @@
 import { useState } from 'react'
+import People from './components/People'
+import Form from './components/Form'
 
-const Name = (props) => {
-    return <p>{props.name}</p>
-}
-
-const People = (props) => {
-    return (
-        <div>
-            {props.persons.map(p => <Name key = {p.name} name = {p.name} />)}
-        </div>
-    )
+const Input = (props) => {
+  return (
+    <div>
+      {props.text}: <input onChange={props.handler}/>
+    </div>
+  )
 }
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas', phone: "991-232" }
   ]) 
-  const [newName, setNewName] = useState('')
+
+  const [newPhone, setNewPhone] = useState("");
+  const [newName, setNewName] = useState('');
+  const [searchName, setNewSearch] = useState("");
 
   const handleChange = (event) => {
     setNewName(event.target.value);
+  }
+
+  const handleChangeSearch = (event) => {
+    setNewSearch(event.target.value);
+  }
+
+  const handlePhoneChange = (event) => {
+    setNewPhone(event.target.value);
   }
 
   const onClickForm = (event) => {
@@ -27,30 +36,26 @@ const App = () => {
 
     let found = false;
     for (let i = 0; i < persons.length; i++)
-        if (persons[i].name === newName)
-        {
-            alert(newName + ' is already added to phonebook')
-        }
+      if (persons[i].name === newName && persons[i].phone === newPhone)
+      {
+        alert(persons[i].name + ' is already added to phonebook')
+        return;
+      }
 
-    let new_arr = [...persons, {name: newName}];
+    let new_arr = [...persons, {name: newName, phone: newPhone}];
     setPersons(new_arr);
-    setNewName('');
-
   }
+
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <form>
-        <div>
-          name: <input onChange={handleChange}/>
-        </div>
-        <div>
-          <button type="submit" onClick={onClickForm}>add</button>
-        </div>
-      </form>
+      <Input text = "filter shown with" handler = {handleChangeSearch}/>
+      <h2>Add a new</h2>
+      <Form handlerName = {handleChange} handlerPhone = {handlePhoneChange} onClick = {onClickForm} />
+
       <h2>Numbers</h2>
-      <People persons = {persons} />
+      <People persons = {persons} criteria = {searchName} />
     </div>
   )
 }
