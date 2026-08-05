@@ -6,10 +6,13 @@ import Connection from './services/Connection'
 import People from './components/People'
 import Form from './components/Form'
 import Input from "./components/Input"
+import Correct from "./components/Correct"
 
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
+
+  const [correctMsg, setCorrect] = useState("")
 
   const [newPhone, setNewPhone] = useState("");
   const [newName, setNewName] = useState('');
@@ -33,6 +36,8 @@ const App = () => {
       return;
     Connection.delete_person(id)
     .then(response => setPersons(persons.filter(elem => elem.id != response.data.id)))
+    .catch(error => {setCorrect( `Person not in json!`);
+                     setTimeout(() => { setCorrect("")}, 2000);})
   }
 
   const onClickForm = (event) => {
@@ -58,6 +63,9 @@ const App = () => {
 
     Connection.create(new_person)
     .then(response => setPersons([...persons, response.data]))
+
+    setCorrect( `Person '${new_person.name}' added!`);
+    setTimeout(() => { setCorrect("")}, 2000);
   }
 
   const hook = () => {
@@ -68,6 +76,7 @@ const App = () => {
   useEffect(hook, []);
   return (
     <div>
+      <Correct content = {correctMsg}/>
       <h2>Phonebook</h2>
       <Input text = "filter shown with" handler = {handleChangeSearch}/>
       <h2>Add a new</h2>
