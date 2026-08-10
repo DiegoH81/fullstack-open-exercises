@@ -1,0 +1,35 @@
+{
+  "persons": [
+    {
+      "name": "amigo",
+      "phone": "1",
+      "id": "809FALeAsY0"
+    },
+    {
+      "name": "asdsa",
+      "phone": "dasdasdsa",
+      "id": "WNUy05IRQ0I"
+    },
+    {
+      "name": "a",
+      "phone": "1",
+      "id": "b_N3owJzyVg"
+    },
+    {
+      "name": "a3",
+      "phone": "12",
+      "id": "aeNYX0cBstE"
+    },
+    {
+      "name": "123",
+      "phone": "asdba",
+      "id": "bsmuj-j3JXI"
+    },
+    {
+      "name": "1231",
+      "phone": "aa",
+      "id": "bEOK-h52yNE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
