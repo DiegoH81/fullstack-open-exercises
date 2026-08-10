@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ButtonJSX from './Button';
+import Weather from './Weather';
 
 const Country = (props) => {
     let country_data = props.country;
@@ -16,6 +17,8 @@ const Country = (props) => {
                 ))}
             </ul>
             <img src = {country_data.flags.png} alt = {country_data.flags.alt}></img>
+
+            <Weather city = {country_data.name.common}/>
         </div>
     )
 }

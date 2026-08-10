@@ -2,7 +2,11 @@ import axios from 'axios'
 const baseUrl = 'https://studies.cs.helsinki.fi/restcountries/api/all'
 
 const getAll = () => {
-  return axios.get(baseUrl)
+  return axios.get(baseUrl);
+}
+
+const getFromURL = (inUrl) => {
+  return axios.get(inUrl);
 }
 
 const create = newObject => {
@@ -20,6 +24,7 @@ const delete_person = (id) =>
 
 export default { 
   getAll: getAll, 
+  getFromURL: getFromURL,
   create: create, 
   update: update,
   delete_person: delete_person
