@@ -12,7 +12,6 @@ const App = () => {
   const [searchName, setNewSearch] = useState("");
 
   const handleChangeSearch = (event) => {
-    //console.log("old value", searchName, "new value", event.target.value);
     setNewSearch(event.target.value);
   }
 
@@ -28,7 +27,7 @@ const App = () => {
     <div>
       <h2>Countries</h2>
       <Input text = "find countries" handler = {handleChangeSearch}/>
-      <DisplayCountries countries = {countries} searchField = {searchName}/>
+      <DisplayCountries countries = {countries} searchField = {searchName} change_name = {setNewSearch}/>
     </div>
   )
 }
