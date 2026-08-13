@@ -48,10 +48,8 @@ let persons = [
   ]
 
 const generateId = () => {
-  const maxId = persons.length > 0
-    ? Math.max(...persons.map(n => Number(n.id)))
-    : 0
-  return String(maxId + 1)
+  const randomId = Math.floor(Math.random() * 1000000);
+  return String(randomId);
 }
 
 
@@ -89,10 +87,12 @@ app.post("/api/persons", (request, response) => {
     if (!body.content && body.important)
         return response.status(400).json({error: "content missing"});
 
+    let new_id = generateId();
     const new_person = {name: body.name,
                         phone: body.phone,
-                        id: generateId() };
+                        id: new_id };
     
+    console.log("Id is", new_id )
     persons = persons.concat(new_person);
 
     response.status(200).json(new_person);

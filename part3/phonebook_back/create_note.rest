@@ -1,7 +1,13 @@
-POST http://localhost:3001/api/persons
+GET https://render-test-c0f6.onrender.com/api/persons
+
+####
+POST https://render-test-c0f6.onrender.com/api/persons
 Content-Type: application/json
 
 {
-  "content": "Aprender Express con Full Stack Open es genial",
-  "important": true
+  "name": "Carlos Prueba",
+  "phone": "555-123456"
 }
+
+###
+DELETE https://render-test-c0f6.onrender.com/api/persons/5
