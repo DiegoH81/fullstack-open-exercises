@@ -1,7 +1,8 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
-
+let logger = morgan('combined')
 
 let notes = [
   {
@@ -27,6 +28,14 @@ const generateId = () => {
     : 0
   return String(maxId + 1)
 }
+
+morgan.token('body', (request, response) => {
+  return JSON.stringify(request.body)
+})
+
+
+app.use(morgan(":method :url :status :res[content-length] - :response-time ms :body"));
+app.use(express.json());
 
 
 app.get('/', (request, response) => {
@@ -59,7 +68,7 @@ app.get('/info', (request, response) => {
 app.post("/api/persons", (request, response) => {
     const body = request.body;
 
-    if (!body.content || body.important)
+    if (!body.content && body.important)
         return response.status(400).json({error: "content missing"});
 
     const new_note = {id: generateId(),
