@@ -63,6 +63,7 @@ const App = () => {
 
     Connection.create(new_person)
     .then(response => setPersons([...persons, response.data]))
+    .catch(error => setCorrect(error.response.data.error))
 
     setCorrect( `Person '${new_person.name}' added!`);
     setTimeout(() => { setCorrect("")}, 2000);
