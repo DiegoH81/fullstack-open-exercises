@@ -1,0 +1,15 @@
+### Obtener todos los blogs
+GET http://localhost:3001/api/blogs
+
+###
+
+### Crear un nuevo blog
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Estructura de aplicaciones Node.js y Express",
+  "author": "Diego Hidalgo",
+  "url": "https://fullstackopen.com/es/part4/estructura_de_la_aplicacion_node_js_y_configuracion_de_pruebas",
+  "likes": 15
+}
